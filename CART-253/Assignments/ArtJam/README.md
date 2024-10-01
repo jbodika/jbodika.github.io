@@ -1,7 +1,7 @@
 # Arcade Game Simulation
 Jolene Bodika
 
-## [View the project online](URL_TO_THE_PROJECT)
+## [View the project online](https://jbodika.github.io/CART-253/Assignments/ArtJam/)
 
 ## Description
 Ah, the arcade! A place where people from all age groups come to play video games and have some good laughs. You’ll need to wait in a long line before you can try out this arcade claw machine. Don't be intimidated by the long wait times, I believe it's your turn now!
