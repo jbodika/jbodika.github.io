@@ -1,0 +1,125 @@
+/* <-- colour scheme used ---> #FF6738 #EA5147 #FEC74E #5B79C8 #1D2038 */
+body {
+    background-color: #1D2038 !important;
+    /**Animation Flashing Sticker by Ru Lemer https://giphy.com/stickers/transparent-sWFYgYFjHGugleQdO7**/
+    background-image: url("../assets/images/giphy.webp");
+    font-family: 'Rowdies';
+    overflow-x: hidden;
+    cursor:url('../assets/images/point-minimal-ufo-pack.png'), auto;
+     /**Cursor by Custom Cursor https://custom-cursor.com/en/collection/minimal-style/minimal-ufo**/
+
+}
+
+a{
+    cursor: url('../assets/images/minimal-ufo-pack.png'), auto;
+     /**Cursor by Custom Cursor https://custom-cursor.com/en/collection/minimal-style/minimal-ufo**/
+    text-decoration: none;
+    color: #1D2038;
+
+}
+
+.main-btn {
+    background-color: #D9EFEF;
+    font-size: 50px;
+    border-radius: 2em;
+    border-width: 10px;
+    border-color: #1D2038;
+    color: #1D2038;
+    cursor: url('../assets/images/minimal-ufo-pack.png'), auto !important;
+     /**Cursor by Custom Cursor https://custom-cursor.com/en/collection/minimal-style/minimal-ufo**/
+
+
+}
+
+.story-item{
+    background-color: #FEC74E;
+    padding: 40px;
+    margin: 20px; 
+    border-radius: 2em;
+    border-width: 10px;
+    border-color: #1D2038;
+    color: #1D2038;
+  
+}
+
+.story-item:hover{
+    color: white ;
+    background-color: #FF6738;
+
+ }
+ .story-item>a>h3:hover{
+    color: white;
+ }
+.story{
+    font-size: 30px;
+    background-color: #5B79C8;
+    padding: 40px;
+    margin: 20px; 
+    border-radius: 2em;
+    border-width: 10px;
+    border-color: #1D2038;
+    color: #1D2038;
+}
+.choice-option{
+    background-color: #FEC74E;
+    padding: 40px;
+    margin: 20px; 
+    border-radius: 2em;
+    border-width: 10px;
+    border-color: #EA5147;
+    color: #1D2038;
+    cursor: url('../assets/images/minimal-ufo-pack.png'), auto !important;
+     /**Cursor by Custom Cursor https://custom-cursor.com/en/collection/minimal-style/minimal-ufo**/
+
+
+}
+
+.welcome{
+    display: block;
+    color: #D9EFEF;
+    font-size: 50px;
+    margin: 20px;
+}
+
+#story-title{
+    padding: 50px;
+}
+.profile-card{
+    background-color: white;
+    color: #1D2038;
+    margin: 100px auto; 
+    padding: 20px;
+    width: 90%;
+    height: auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 2em;
+    display: block;
+}
+
+
+.achievements-card{
+    background-color: white;
+    color: #1D2038;
+    margin: 100px auto; 
+    padding: 20px;
+    width: 90%; 
+    height: auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 2em;
+    display: block;
+}
+
+.bottom-align {
+    position: absolute;
+    bottom: 0;
+  }
+
+/* background  of progress bar */
+progress::-webkit-progress-bar {background-color: lightgray; width: 100%;}
+progress {background-color: lightgray;}
+
+/* progress bar value */
+progress::-webkit-progress-value {background-color: #FEC74E !important;}
+progress::-moz-progress-bar {background-color: #FEC74E !important;}
+progress {color: #FEC74E;}
+
