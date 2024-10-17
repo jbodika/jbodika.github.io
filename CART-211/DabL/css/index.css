@@ -50,24 +50,32 @@ a{
  .story-item>a>h3:hover{
     color: white;
  }
-.story{
+ .story{
     font-size: 30px;
     background-color: #5B79C8;
     padding: 40px;
-    margin: 20px; 
+    margin: 20px;
     border-radius: 2em;
     border-width: 10px;
     border-color: #1D2038;
     color: #1D2038;
+    box-sizing: border-box;
+    overflow: hidden;
 }
+
 .choice-option{
     background-color: #FEC74E;
     padding: 40px;
-    margin: 20px; 
+    margin: 20px;
     border-radius: 2em;
     border-width: 10px;
     border-color: #EA5147;
     color: #1D2038;
+    box-sizing: border-box;
+    max-width: 100%; 
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: visible; 
     cursor: url('../assets/images/minimal-ufo-pack.png'), auto !important;
      /**Cursor by Custom Cursor https://custom-cursor.com/en/collection/minimal-style/minimal-ufo**/
 
