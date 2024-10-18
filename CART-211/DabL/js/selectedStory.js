@@ -1,18 +1,10 @@
+import { firebaseConfig } from "./credentials.js";
+
+// Initialize Firebase App
+firebase.initializeApp(firebaseConfig);
+
 //DECLARE VARIABLES
 let title = undefined
-
-//Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyDCNbOigX073RJrRWWUPE9tUH-52PJKcW4",
-    authDomain: "dabl-95a47.firebaseapp.com",
-    databaseURL: "https://dabl-95a47-default-rtdb.firebaseio.com",
-    projectId: "dabl-95a47",
-    storageBucket: "dabl-95a47.appspot.com",
-    messagingSenderId: "1086495030772",
-    appId: "1:1086495030772:web:9f81ef078a0758b18ccda1"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
 //returns the name of the query parameter
 function getQueryParam(param) {
@@ -24,7 +16,7 @@ function getQueryParam(param) {
 const storyId = getQueryParam('id');
 
 if (storyId) {
-    firebase.database().ref('Stories/' + storyId).once('value').then(function (snapshot) {
+    firebase.database().ref('Stories/' + storyId).once('value').then(function(snapshot) {
         const story = snapshot.val();
         console.log(story)
         document.querySelector('#story-title').innerHTML = `${story.name} ${story.icon}
@@ -34,7 +26,7 @@ if (storyId) {
         title = story.name
     })
 
-    firebase.database().ref('StoryDecisions/' + storyId).once('value').then(function (snapshot) {
+    firebase.database().ref('StoryDecisions/' + storyId).once('value').then(function(snapshot) {
         const story = snapshot.val();
         if (story) {
             // Display story data
@@ -84,7 +76,7 @@ if (storyId) {
             const choiceOuctome6 = document.querySelector("#choiceOuctome6")
             const choiceOuctome7 = document.querySelector("#choiceOuctome7")
             const choiceOuctome8 = document.querySelector("#choiceOuctome8")
-            // store story progression in localStorage
+                // store story progression in localStorage
             localStorage.setItem('progression_story_' + storyId, 1);
 
             // user must click on one of the two options presented to them
