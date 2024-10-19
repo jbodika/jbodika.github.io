@@ -1,4 +1,4 @@
-import { firebaseConfig } from "./credentials.js";
+
 
 // Initialize Firebase App
 firebase.initializeApp(firebaseConfig);
