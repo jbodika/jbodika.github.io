@@ -498,6 +498,7 @@ function checkFruitTongueOverlap() {
         fliesSkipped += 1;
         randomFruit.body.x = 0; // reset the fruit's x position to 0
         randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
+        frogSound.play();
         frog.tongue.state = "inbound";
     }
 }
