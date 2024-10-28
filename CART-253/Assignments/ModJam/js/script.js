@@ -161,7 +161,6 @@ const craneFlies = {
     },
 
     speed: 1,
-
     pointVal: 3,
     minShake: -0.10,
     maxShake: 0.40
@@ -176,7 +175,6 @@ const fruitFlies = {
     },
 
     speed: 4,
-
     pointVal: 7,
     minShake: -0.50,
     maxShake: 0.80
@@ -602,11 +600,8 @@ function checkTongueFlyOverlap() {
 function checkFruitTongueOverlap() {
     if (checkOverlap(randomFruit.body.x, randomFruit.body.y, frog.tongue.x, frog.tongue.y, frog.tongue.size)) {
         score += randomFruit.pointVal;
-        fliesSkipped += 1;
         randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
         randomFruit.body.x = 0; // reset the fruit's x position to 0
-
-
         frogSound.play(); //play frog sound
         frog.tongue.state = "inbound";
     }
