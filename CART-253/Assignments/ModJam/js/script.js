@@ -105,7 +105,7 @@ const apples = {
         size: 10,
         colour: 'red',
     },
-    speed: 8,
+    speed: 5,
     pointVal: -3,
     minShake: 0,
     maxShake: 0
@@ -118,7 +118,7 @@ const watermelon = {
         size: 20,
         colour: 'green',
     },
-    speed: 12,
+    speed: 4,
     pointVal: -7,
     minShake: 0,
     maxShake: 0
@@ -180,8 +180,15 @@ const fruitFlies = {
     maxShake: 0.80
 };
 
+// stores the score data
+const score = {
+    count: 0,
+    colour: "#fff"
+}
+
 //DECLARE GLOABAL VARIABLES
 let frogSound;
+let errorSound;
 let heartImg;
 let blankHeartImg;
 let fly;
@@ -192,7 +199,6 @@ let expansionFrames = 0;
 let yOffset = 0; // Variable to control the y-position of the image
 let speed = 0.02; // Speed of the movement
 let fliesSkipped = 0;
-let score = 0;
 
 //DECLARE FLAG VARIABLES
 let expanding = false;
@@ -202,9 +208,10 @@ let expanding = false;
  */
 function preload() {
     frogSound = loadSound("assets/sounds/frogCroaking.wav");
-    heartImg = loadImage("assets/images/pixel-heart-2779422_1280.png");
-    blankHeartImg = loadImage("assets/images/blankHeart.png");
+    errorSound = loadSound("assets/sounds/errorSound.wav");
 
+    heartImg = loadImage("assets/images/pixelHeart.png");
+    blankHeartImg = loadImage("assets/images/blankHeart.png");
 }
 
 /**
@@ -239,7 +246,7 @@ function draw() {
         drawScore();
 
         // Harder level with snake appearing starts
-        if (score > 50) {
+        if (score.count > 50) {
             moveSnake();
             drawSnake();
         }
@@ -257,12 +264,12 @@ function gameInProgress() {
         textSize(20);
         textAlign(CENTER);
         textStyle(BOLD);
-        text('Game over \n Your score is ' + score, width / 2, height / 2);
+        text('Game over \n Your score is ' + score.count, width / 2, height / 2);
         return false;
     }
 
     // If the score is over 100 the frog will expand
-    if (score > 100 && !expanding) {
+    if (score.count > 100 && !expanding) {
         expanding = true; // flag to expand the frog
     }
 
@@ -276,7 +283,7 @@ function gameInProgress() {
         textSize(20);
         textAlign(CENTER);
         textStyle(BOLD);
-        text('Game over \n Your score is ' + score, width / 2, height / 2);
+        text('Game over \n Your score is ' + score.count, width / 2, height / 2);
         return false;
     }
     // If the snake touches the frog
@@ -284,7 +291,7 @@ function gameInProgress() {
         textSize(20);
         textAlign(CENTER);
         textStyle(BOLD)
-        text('You got eaten by a snake :( \nYour score is ' + score, width / 2, height / 2);
+        text('You got eaten by a snake :( \nYour score is ' + score.count, width / 2, height / 2);
         return false;
     }
 
@@ -521,8 +528,8 @@ function drawScore() {
     textSize(20);
     textAlign(RIGHT, TOP);
     textStyle(BOLD);
-    fill('white');
-    text('Score: ' + score, width - 10, 10);
+    fill(score.colour);
+    text('Score: ' + score.count, width - 10, 10);
     pop();
 }
 
@@ -566,6 +573,8 @@ function resetSettings() {
 
     // resets the random fruit's y position
     randomFruit.body.y = random(0, 300); // picks a random y position for the fruit
+
+    score.colour = "#fff"; // reset score to default white colour
 }
 
 
@@ -586,7 +595,7 @@ function checkTongueFlyOverlap() {
 
         resetSettings(); // Reset objects properties
         frog.tongue.state = "inbound"; // Bring back the tongue
-        score += fly.pointVal; // increment the score based on the point value of the fly
+        score.count += fly.pointVal; // increment the score based on the point value of the fly
         frog.body.size += fly.pointVal; // increase the size of the frog
         frogSound.play(); // play the frog sound
 
@@ -599,10 +608,11 @@ function checkTongueFlyOverlap() {
  */
 function checkFruitTongueOverlap() {
     if (checkOverlap(randomFruit.body.x, randomFruit.body.y, frog.tongue.x, frog.tongue.y, frog.tongue.size)) {
-        score += randomFruit.pointVal;
+        score.count += randomFruit.pointVal; // increment the score based on the point value of the fruit
         randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
         randomFruit.body.x = 0; // reset the fruit's x position to 0
-        frogSound.play(); //play frog sound
+        errorSound.play(); //play error sound
+        score.colour = "red" // sets the score colour to red 
         frog.tongue.state = "inbound";
     }
 }
