@@ -33,7 +33,9 @@ const snake = {
     body: {
         x: 90,
         y: 300,
-        size: 100
+        size: 100,
+        colour: "#7E825D"
+
     }
 };
 
@@ -43,7 +45,45 @@ const frog = {
     body: {
         x: 320,
         y: 520,
-        size: 150
+        size: 150,
+        colour: "#a8dd9b"
+    },
+    eyes: {
+        colour: "#76ca62",
+        leftEye: {
+            x: 260,
+            y: 460,
+            size: 50,
+            iris: {
+                x: 250,
+                y: 450,
+                size: 35,
+                colour: "orange"
+            },
+            pupil: {
+                x: 243,
+                y: 445,
+                size: 20,
+                colour: "#000"
+            }
+        },
+        rightEye: {
+            x: 390,
+            y: 460,
+            size: 50,
+            iris: {
+                x: 400,
+                y: 450,
+                size: 35,
+                colour: "orange"
+            },
+            pupil: {
+                x: 407,
+                y: 445,
+                size: 20,
+                colour: "#000"
+            }
+        }
     },
     // The frog's tongue has a position, size, speed, and state
     tongue: {
@@ -51,7 +91,8 @@ const frog = {
         y: 480,
         size: 20,
         speed: 20, // Determines how the tongue moves each frame
-        state: "idle" // State can be: idle, outbound, inbound
+        state: "idle", // State can be: idle, outbound, inbound,
+        colour: "#ffa1a1"
     }
 };
 
@@ -59,8 +100,8 @@ const frog = {
 // All fruits have a position, size,colour, point value, min/max shaking values and speed of horizontal movement properties
 const apples = {
     body: {
-        x: 0,
-        y: 200, // Will be random
+        x: 640, //width of canvas
+        y: 200,
         size: 10,
         colour: 'red',
     },
@@ -72,8 +113,8 @@ const apples = {
 
 const watermelon = {
     body: {
-        x: 0,
-        y: 200, // Will be random
+        x: 640, //width of canvas
+        y: 200,
         size: 20,
         colour: 'green',
     },
@@ -86,8 +127,8 @@ const watermelon = {
 
 const orange = {
     body: {
-        x: 0,
-        y: 200, // Will be random
+        x: 640, //width of canvas
+        y: 200,
         size: 15,
         colour: 'orange',
     },
@@ -101,11 +142,11 @@ const orange = {
 const houseFlies = {
     body: {
         x: 0,
-        y: 200, // Will be random
+        y: 200,
         size: 10,
         colour: '#181C14',
     },
-    speed: 5,
+    speed: 2,
     pointVal: 1,
     minShake: -0.5,
     maxShake: 0.35
@@ -119,7 +160,7 @@ const craneFlies = {
         colour: '#697565',
     },
 
-    speed: 4,
+    speed: 1,
 
     pointVal: 3,
     minShake: -0.10,
@@ -134,7 +175,7 @@ const fruitFlies = {
         colour: '#3C3D37',
     },
 
-    speed: 5,
+    speed: 4,
 
     pointVal: 7,
     minShake: -0.50,
@@ -178,7 +219,7 @@ function setup() {
     fly = randomizeElement(flyArray); // assign the first random fly type to the fly variable
     randomFruit = randomizeElement(fruitArray); // assign the first random fruit to the randomFruit variable
     // Give the fly its first random position
-    resetFly();
+    resetSettings();
 }
 
 /**
@@ -217,8 +258,8 @@ function gameInProgress() {
     if (fliesSkipped == 4) { //End game if 4 flies have been skipped
         textSize(20);
         textAlign(CENTER);
-
-        text('Game over \n Your score is: ' + score, width / 2, height / 2);
+        textStyle(BOLD);
+        text('Game over \n Your score is ' + score, width / 2, height / 2);
         return false;
     }
 
@@ -236,14 +277,16 @@ function gameInProgress() {
     if (expansionFrames >= 100) {
         textSize(20);
         textAlign(CENTER);
-        text('Game over \n Your score is: ' + score, width / 2, height / 2);
+        textStyle(BOLD);
+        text('Game over \n Your score is ' + score, width / 2, height / 2);
         return false;
     }
     // If the snake touches the frog
     if (checkOverlap(snake.body.x, snake.body.y, frog.body.x, frog.body.y, frog.body.size)) {
         textSize(20);
         textAlign(CENTER);
-        text('You got eaten by a snake :( \nYour score is: ' + score, width / 2, height / 2);
+        textStyle(BOLD)
+        text('You got eaten by a snake :( \nYour score is ' + score, width / 2, height / 2);
         return false;
     }
 
@@ -266,7 +309,7 @@ function moveFly(fly) {
     if (fly.body.x > width) {
         // Select a random fly type
         fly = randomizeElement(flyArray);
-        resetFly(fly); // Reset the fly
+        resetSettings(); // Reset the fly
         fliesSkipped++ // increment the fliesSkipped variable
     }
 }
@@ -286,10 +329,21 @@ function drawFly(fly) {
 
 
 /**
- * Moves the frog to the mouse position on x
+ * Moves all parts of the frog to the mouse position on x
  */
 function moveFrog() {
     frog.body.x = mouseX;
+
+    // decremented the iris and pupil values of left eyes by 60 to keep them relative to the frog's body
+    frog.eyes.leftEye.x = frog.body.x - 60;
+    frog.eyes.leftEye.iris.x = frog.body.x - 60;
+    frog.eyes.leftEye.pupil.x = frog.body.x - 60;
+
+    // incremented the iris and pupil values of right eyes by 70 to keep them relative to the frog's body
+    frog.eyes.rightEye.x = frog.body.x + 70;
+    frog.eyes.rightEye.iris.x = frog.body.x + 70;
+    frog.eyes.rightEye.pupil.x = frog.body.x + 70;
+
 }
 
 /**
@@ -325,7 +379,7 @@ function moveTongue() {
  * Moves the fruit accross the screen
  */
 function moveFruit() {
-    randomFruit.body.x += randomFruit.speed;
+    randomFruit.body.x -= randomFruit.speed;
 }
 
 
@@ -342,29 +396,67 @@ function drawFruit(fruit) {
 
 
 /**
- * Displays the tongue (tip and line connection) and the frog (body)
+ * Displays the tongue (tip and line connection), eyes (right and left), and the frog (body)
  */
 function drawFrog() {
     // Draw the tongue tip
     push();
-    fill("#ff0000");
+    fill(frog.tongue.colour);
     noStroke();
     ellipse(frog.tongue.x, frog.tongue.y, frog.tongue.size);
     pop();
 
     // Draw the rest of the tongue
     push();
-    stroke("#ff0000");
+    stroke(frog.tongue.colour);
     strokeWeight(frog.tongue.size);
     line(frog.tongue.x, frog.tongue.y, frog.body.x, frog.body.y);
     pop();
 
     // Draw the frog's body
     push();
-    fill("#00ff00");
+    fill(frog.body.colour);
     noStroke();
     ellipse(frog.body.x, frog.body.y, frog.body.size);
     pop();
+
+    // Draw the frog's eyes 
+    push();
+    fill(frog.eyes.colour);
+    noStroke();
+    ellipse(frog.eyes.leftEye.x, frog.eyes.leftEye.y, frog.eyes.leftEye.size); // draw frog's left and right eyelids
+    ellipse(frog.eyes.rightEye.x, frog.eyes.rightEye.y, frog.eyes.rightEye.size);
+    pop();
+
+    // Draw frog's left pupil and left iris
+    push();
+    noStroke();
+    fill(frog.eyes.leftEye.iris.colour); // draw frog iris
+    ellipse(frog.eyes.leftEye.iris.x, frog.eyes.leftEye.iris.y, frog.eyes.leftEye.iris.size);
+    pop();
+
+    // Draw frog's left pupil
+    push();
+    noStroke();
+    fill(frog.eyes.leftEye.pupil.colour); // draw frog pupil
+    ellipse(frog.eyes.leftEye.pupil.x, frog.eyes.leftEye.pupil.y, frog.eyes.leftEye.pupil.size);
+    pop();
+
+    // Draw frog's right iris
+    push();
+    noStroke();
+    fill(frog.eyes.rightEye.iris.colour); // draw frog iris
+    ellipse(frog.eyes.rightEye.iris.x, frog.eyes.rightEye.iris.y, frog.eyes.rightEye.iris.size);
+    pop();
+
+    // Draw frog's right pupil
+    push();
+    noStroke();
+    fill(frog.eyes.rightEye.pupil.colour); // draw frog pupil
+    ellipse(frog.eyes.rightEye.pupil.x, frog.eyes.rightEye.pupil.y, frog.eyes.rightEye.pupil.size);
+    pop();
+
+
 
 }
 
@@ -372,9 +464,10 @@ function drawFrog() {
  * Displays the pixelated hearts on the top right of the screen
  */
 function drawHearts() {
-    //  Create the up-down movement with the sin() function
+    //  Create the up-down movement for the hearts with the sin() function
     yOffset = sin(frameCount * speed) * 5; // Adjust the amplitude by 5
 
+    // checks how many flies escaped the frog and displays images of the pixelated hearts
     switch (fliesSkipped) {
         case 0:
             image(heartImg, width - 100, 30 + yOffset); // 3 out of 3 red hearts
@@ -410,6 +503,7 @@ function frogOverload() {
         frog.body.size += 100; // Increase the size of the frog
         textSize(20);
         textAlign(CENTER);
+        textStyle(BOLD);
         text('Oh no! You ate too much...', width / 2, height / 2);
         expansionFrames++; // Increment the frames
     }
@@ -429,7 +523,7 @@ function drawScore() {
 }
 
 /**
- * Randomize the element of the array
+ *  Returns a single object from an array picked randomly  
  */
 function randomizeElement(array) {
     return array[Math.floor(Math.random() * array.length)]; // returns a single object from the array argument passed 
@@ -439,13 +533,15 @@ function randomizeElement(array) {
  * Moves the snake's body
  */
 function moveSnake() {
+    snake.body.y = constrain(snake.body.y, 0, height)
     snake.body.y += 5; // makes the snake go down the y axis of the canvas
+
 }
 
 /** Draws snake*/
 function drawSnake() {
     push();
-    stroke("#7E825D");
+    stroke(snake.body.colour);
     strokeWeight(snake.body.size);
     line(snake.body.x, 20, snake.body.x, snake.body.y);
     pop();
@@ -453,14 +549,19 @@ function drawSnake() {
 }
 
 /**
- * Resets the fly to the left with a random y
+ * Resets objects properties
  */
-function resetFly() {
+function resetSettings() {
+    // resets fly x and y positions
     fly.body.x = 0;
     fly.body.y = random(70, 300); // random position on y axis for the fly to appear on
 
+    // resets snake x and y positions
     snake.body.x = random(70, width - 200); // picks a random position for the snake to appear from
     snake.body.y = 0;
+
+    // resets the random fruit's y position
+    randomFruit.body.y = Math.floor(random() * 300); // picks a random y position for the fruit
 }
 
 
@@ -475,10 +576,11 @@ function checkTongueFlyOverlap() {
     const eaten = (d < frog.tongue.size / 2 + fly.body.size / 2);
     if (eaten) {
         fly = randomizeElement(flyArray); // Select a random fly type
-        resetFly(fly); // Reset the fly
+        resetSettings(); // Reset objects properties
 
         randomFruit.body.x = 0; // reset the fruit's x position to 0
-        randomFruit = randomizeElement(fruitArray);
+
+        randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
 
         frog.tongue.state = "inbound"; // Bring back the tongue
         score += fly.pointVal; // increment the score based on the point value of the fly
@@ -497,8 +599,9 @@ function checkFruitTongueOverlap() {
         score += randomFruit.pointVal;
         fliesSkipped += 1;
         randomFruit.body.x = 0; // reset the fruit's x position to 0
+
         randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
-        frogSound.play();
+        frogSound.play(); //play frog sound
         frog.tongue.state = "inbound";
     }
 }
