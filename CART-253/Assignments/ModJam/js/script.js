@@ -380,6 +380,12 @@ function moveTongue() {
  */
 function moveFruit() {
     randomFruit.body.x -= randomFruit.speed;
+
+    // If the fruit goes off the screen to the left, reset its position
+    if (randomFruit.body.x < -randomFruit.body.size) { // if the x position is less than the fruit's width
+        randomFruit.body.x = width; // Reset to start from the right side
+        randomFruit.body.y = random(0, 300); // Set a new random y position
+    }
 }
 
 
@@ -561,7 +567,7 @@ function resetSettings() {
     snake.body.y = 0;
 
     // resets the random fruit's y position
-    randomFruit.body.y = Math.floor(random() * 300); // picks a random y position for the fruit
+    randomFruit.body.y = random(0, 300); // picks a random y position for the fruit
 }
 
 
@@ -576,12 +582,11 @@ function checkTongueFlyOverlap() {
     const eaten = (d < frog.tongue.size / 2 + fly.body.size / 2);
     if (eaten) {
         fly = randomizeElement(flyArray); // Select a random fly type
-        resetSettings(); // Reset objects properties
-
+        randomFruit = randomizeElement(fruitArray); // returns a random fruit to display 
         randomFruit.body.x = 0; // reset the fruit's x position to 0
 
-        randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
 
+        resetSettings(); // Reset objects properties
         frog.tongue.state = "inbound"; // Bring back the tongue
         score += fly.pointVal; // increment the score based on the point value of the fly
         frog.body.size += fly.pointVal; // increase the size of the frog
@@ -598,9 +603,10 @@ function checkFruitTongueOverlap() {
     if (checkOverlap(randomFruit.body.x, randomFruit.body.y, frog.tongue.x, frog.tongue.y, frog.tongue.size)) {
         score += randomFruit.pointVal;
         fliesSkipped += 1;
+        randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
         randomFruit.body.x = 0; // reset the fruit's x position to 0
 
-        randomFruit = randomizeElement(fruitArray); // returns a random fruit to display
+
         frogSound.play(); //play frog sound
         frog.tongue.state = "inbound";
     }
