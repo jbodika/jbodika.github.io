@@ -28,7 +28,7 @@ Frog needs to be careful not to eat too much.
 - Click to launch the tongue.
 - As you keep catching flies, you will grow based on the type of fly eaten.
 - Once you reach a score of 50, please avoid touching the snake or you will get eaten.
-- Avoid eating <u>any fruits</u> or else you will lose points based on the fruit eaten.
+- Avoid eating <ins>any fruits</ins> or else you will lose points based on the fruit eaten.
 - If you let a fly go away you will lose a life. 
 
 ## In-depth explanation of the point system
