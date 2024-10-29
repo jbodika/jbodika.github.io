@@ -19,9 +19,10 @@
  * https://p5js.org/
  * 
  * Attributions
-- Heart Image from Pixabay https://pixabay.com/illustrations/pixel-heart-heart-pixel-symbol-red-2779422/
-- Blank Heart Image from PNG EGG https://www.pngegg.com/en/png-cwvxw
-- Frog Croaking https://www.soundsnap.com/frog_croaking_x1
+- Red Pixelated Heart Image from Pixabay: https://pixabay.com/illustrations/pixel-heart-heart-pixel-symbol-red-2779422/
+- Blank Pixelated Heart Image from PNG EGG: https://www.pngegg.com/en/png-cwvxw
+- Frog Croaking from SoundSnap: https://www.soundsnap.com/frog_croaking_x1
+- Error sound from SoundSnap: https://www.soundsnap.com/sound_design_user_interface_accent_mid_range_beep_01_notification_alert_error
 - Code sample taken from ArtJam assignment by Jolene Bodika https://github.com/jbodika/CART-253/tree/main/Assignments/ArtJam 
  */
 "use strict";
