@@ -27,7 +27,6 @@
  */
 "use strict";
 
-//DECLARE CONSTANT VARIABLES
 
 // The evil snake
 const snake = {
@@ -107,9 +106,7 @@ const apples = {
         colour: 'red',
     },
     speed: 5,
-    pointVal: -3,
-    minShake: 0,
-    maxShake: 0
+    pointVal: -3
 };
 
 const watermelon = {
@@ -120,9 +117,7 @@ const watermelon = {
         colour: 'green',
     },
     speed: 4,
-    pointVal: -7,
-    minShake: 0,
-    maxShake: 0
+    pointVal: -7
 };
 
 
@@ -134,9 +129,7 @@ const orange = {
         colour: 'orange',
     },
     speed: 3,
-    pointVal: -5,
-    minShake: 0,
-    maxShake: 0
+    pointVal: -5
 };
 
 // All flies have a position, size,colour, point value, min/max shaking values and speed of horizontal movement properties
@@ -187,21 +180,19 @@ const score = {
     colour: "#fff"
 }
 
-//DECLARE GLOABAL VARIABLES
+
 let frogSound;
 let errorSound;
 let heartImg;
 let blankHeartImg;
 let fly;
 let randomFruit;
-let fruitArray = [apples, watermelon, orange];
-let flyArray = [houseFlies, craneFlies, fruitFlies];
+let fruitArray = [apples, watermelon, orange]; // array container for fruit objects
+let flyArray = [houseFlies, craneFlies, fruitFlies]; // array container for fruit objects
 let expansionFrames = 0;
 let yOffset = 0; // Variable to control the y-position of the image
 let speed = 0.02; // Speed of the movement
 let fliesSkipped = 0;
-
-//DECLARE FLAG VARIABLES
 let expanding = false;
 
 /*
