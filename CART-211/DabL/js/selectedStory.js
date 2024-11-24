@@ -35,7 +35,6 @@ firebase.database().ref('Stories/' + storyId).once('value').then(function(snapsh
         `;
 
             let currentChoice = story.choices[0]; // Start with the first choice
-            console.log(currentChoice)
 
             function displayChoices() {
                 if (!currentChoice) return;
@@ -86,8 +85,6 @@ firebase.database().ref('Stories/' + storyId).once('value').then(function(snapsh
             let imgEl = document.createElement('img')
                         imgEl.src = selectedOption.imageUrl
                         storyContainer.appendChild(imgEl);
-
-                        console.log("Array of strings:", selectedOption.imageUrl);
         }
         
 
@@ -122,7 +119,6 @@ firebase.database().ref('Stories/' + storyId).once('value').then(function(snapsh
 
                 // Update currentChoice and display next question
                 currentChoice = findNextChoice(nextChoiceId, story.choices);
-                console.log("Next Choice:", currentChoice);
                 if (currentChoice) {
                     displayChoices() 
                  } 

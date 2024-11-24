@@ -4,7 +4,6 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.database().ref('Stories').orderByChild('title').on('child_added', function(snapshot) {
     const story = snapshot.val();
-    console.log(story)
     const storyItem = document.createElement('div');
     storyItem.classList.add('story-item');
     storyItem.innerHTML = ` 
