@@ -41,7 +41,7 @@ stories_array.forEach((story) => {
         // Story-specific section
         let storySection = document.createElement("div");
         storySection.classList.add("story-section");
-        storySection.innerHTML += `<h3>Achievements for <a href="/selectedStory.html?id=${storyId}">${storyName}</a>:</h3>`;
+        storySection.innerHTML += `<h3>Achievements for <a href="selectedStory.html?id=${storyId}">${storyName}</a>:</h3>`;
 
         // Grid container for achievements
         let storyAchievementsCard = document.createElement("div");
@@ -72,7 +72,7 @@ stories_array.forEach((story) => {
         achievementsContainer.appendChild(storySection);
     } else {
 
-        achievements.innerHTML += `<h3>No achievements for the story <a href="/selectedStory.html?id=${storyId}">'${storyName}'</a> yet.</h3>`;
+        achievements.innerHTML += `<h3>No achievements for the story <a href="selectedStory.html?id=${storyId}">'${storyName}'</a> yet.</h3>`;
 
     }
 });
