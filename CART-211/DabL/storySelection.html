@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <div id="top-of-page"></div>
     <div class="row">
         <div class="row g-4">
             <div class="col-md-4 p-4">
@@ -26,23 +27,29 @@
 
                 <h1 class="text-white p-4">Begin a new adventure by clicking on a story to read based on your age group.
                 </h1>
+                <div class="container">
+                    <div class="row">
+                        <div id="storyGallery"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+                <a id="btn" class="secondary-btn m-4 p-4 top-btn text-decoration-none" href="#top-of-page">Back to the top</a>
 
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div id="storyGallery"></div>
-        </div>
-    </div>
 
-    <footer class="text-white text-center">
-        Copyright &copy 2024 Jolene Bodika
+
+    <footer class="footer">
+        <p>&copy; 2024 DabL - Jolene Bodika - <a style="color: white;" href="attributions.html">Attributions</a></p>
     </footer>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-database-compat.js"></script>
     <script type="module" src="js/script.js"></script>
+
 
 
 </body>

@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <div id="top-of-page"></div>
     <div class="row">
         <div class="row g-4">
             <div class="col-md-4 p-4">
@@ -26,18 +27,48 @@
                 <a href="index.html"><input type="button" class="main-btn p-3 m-2" value="Home 🏠" /></a>
 
                 <h1 id="story-title" class="text-white"></h1>
+                <div class="m-2">
+                    <input type="button" id="btn" class="secondary-btn-del m-2" onclick="deleteStoryData()" value="Delete Game Achievements" />
+                    <input type="button" class="secondary-btn m-2" id="btn" onclick="window.location.reload()" value="Restart the Story" />
+                </div>
+
+
             </div>
         </div>
     </div>
+
+    <div id="achievement-received"></div>
+    <div id="delete-data"></div>
+
+
     <div class="story" id="story">
+
 
     </div>
 
-    <footer class="text-white text-center">
-        Copyright &copy 2024 Jolene Bodika
+
+
+    <div id="progress-container">
+        <h2>Story Progression</h2>
+        <label id="progress-label" for="progression">Progress: 0%</label>
+        <progress id="progression" value="0" max="100">0%</progress>
+    </div>
+    <div class="decisionsBreakdown" id="decisionsBreakdown">
+        <h1 style="color: white;">Look back at all the decisions you've made</h1>
+
+    </div>
+    <div style="display: flex; justify-content: flex-end;">
+        <a id="btn" class="secondary-btn m-4 p-4 top-btn text-decoration-none" href="#top-of-page">Back to the top</a>
+
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 DabL - Jolene Bodika - <a style="color: white;" href="attributions.html">Attributions</a></p>
     </footer>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-database-compat.js"></script>
 
     <script type="module" src="js/selectedStory.js"></script>
 

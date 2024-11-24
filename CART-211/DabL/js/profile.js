@@ -1,42 +1,78 @@
 // DECLARE VARIABLES 
-const profile = document.querySelector(".profile-card")
-const achievements = document.querySelector(".achievements-card")
-let stories_array = []
-let story_progression= []
+const profile = document.querySelector(".profile-card");
+const achievements = document.querySelector(".achievements-container");
+let stories_array = [];
+let story_progression = [];
+let storyAchievements = {};
+let achievementsContainer = document.querySelector(".achievements-container");
+// Loop for all the keys stored in localStorage
+for (var key in localStorage) {
+    if (key.startsWith('story')) { // Add and object that groups the storyId and storyName to the stories_array
+        let storyName = localStorage.getItem(key);
+        stories_array.push({ id: key.split('_')[1], name: storyName });
+    } else if (key.startsWith('progression_story_')) {
+        story_progression.push(localStorage.getItem(key));
+    } else if (key.startsWith('achievement_')) {
+        // Get the storyId from the achievement key
+        let storyId = key.split('_')[1];
 
-// loop through to all the keys stored in localStorage and find those that include 'story' and 'progression_story' to add the them to their respective arrays
-for (var key in localStorage){
-   if (key.startsWith('story')){
-        stories_array.push(localStorage.getItem(key))
-   }
-   else if(key.startsWith('progression_story_')){
-    story_progression.push(localStorage.getItem(key))
-   }
-
- }
-
-
-// check if there's any story progression if there isn't it should display a message instead of the data
-if(stories_array.length==0 ){
-    profile.innerHTML += `<p>You haven't read any stories yet!</p>`
-    achievements.innerHTML += `<p>You haven't gained any achievements yet!</p>`
-
+        // Add all achievements to the story's list of achievements
+        if (!storyAchievements[storyId]) {
+            storyAchievements[storyId] = [];
+        }
+        storyAchievements[storyId].push(key);
+    }
 }
 
-stories_array.forEach((element, index) => {
-    //  convert the progression number from string to int
-    let progressionValue = parseInt(story_progression[index]) || 0;
 
-    // Displaying story and associated progression
-    profile.innerHTML += `
-        <h2>${element}</h2>
-        <label for="progression">${progressionValue*20}%</label>
-        <progress id="progression" value="${progressionValue}" max="5">${progressionValue * 20}% </progress>`;
-});
+// Check if the user has read any stories if they haven't display a message instead of the data
+if (stories_array.length == 0) {
+    profile.innerHTML += `<p>You haven't read any stories yet!</p>`;
+    achievements.innerHTML += `<p>You haven't gained any achievements yet!</p>`;
+}
 
-stories_array.forEach((element) => {
-    achievements.innerHTML += `
-        <h2>${element}</h2>
-        <p>Coming Soon</p>
-       `
+// Loop through the stories and display their respective achievements
+stories_array.forEach((story) => {
+    let storyId = story.id;
+    let storyName = story.name;
+
+    if (storyAchievements[storyId]) {
+
+        // Story-specific section
+        let storySection = document.createElement("div");
+        storySection.classList.add("story-section");
+        storySection.innerHTML += `<h3>Achievements for <a href="/selectedStory.html?id=${storyId}">${storyName}</a>:</h3>`;
+
+        // Grid container for achievements
+        let storyAchievementsCard = document.createElement("div");
+        storyAchievementsCard.classList.add("achievements-card");
+
+        // Get data for achievements for the specific story and display them
+        storyAchievements[storyId].forEach((achievementKey) => {
+            let achievementStatus = localStorage.getItem(achievementKey); // 'incomplete' or 'complete'
+            let achievementId = achievementKey.split('_').slice(2).join('_');
+            let achievementDescription = localStorage.getItem(`desc_achievement_${storyId}_${achievementId}`);
+            let achievementTitle = achievementId.replaceAll("_", " ").toUpperCase();
+
+            // Displays each achievement as a card 
+            storyAchievementsCard.innerHTML += `
+                <div class="card ">
+                    <p>
+                        <strong>${achievementTitle}</strong> - 
+                        Status: <strong style="color:${achievementStatus === 'complete' ? 'green' : 'grey'}">
+                            ${achievementStatus === 'complete' ? 'Unlocked' : 'Locked 🔒'}
+                        </strong><br>
+                        <em>${achievementDescription || 'No description available'}</em>
+                    </p>
+                </div>`;
+        });
+
+        storySection.appendChild(storyAchievementsCard);
+
+        achievementsContainer.appendChild(storySection);
+    } else {
+
+        achievements.innerHTML += `<h3>No achievements for the story <a href="/selectedStory.html?id=${storyId}">'${storyName}'</a> yet.</h3>`;
+
+    }
 });
