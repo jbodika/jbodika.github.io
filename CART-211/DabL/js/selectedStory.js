@@ -3,11 +3,17 @@ import { firebaseConfig } from "./credentials.js";
 firebase.initializeApp(firebaseConfig);
 const storyContainer = document.querySelector('#story');
 const choicesContainer = document.querySelector('#choices-container');
-let progressBar = document.querySelector("#progression");
+
 let progressLabel = document.querySelector("#progress-label");
 let choicesTaken = []
 let decisionsBreakdown = document.querySelector("#decisionsBreakdown")
-    //returns the name of the query parameter
+let storyProgress = {
+    currentChoice: 0, // Count how many choices the player has made
+    totalChoices: 0, // Total num of choices in the current path
+    hasEnded: false // Flag to check if the story has ended
+};
+
+//returns the name of the query parameter
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -126,7 +132,7 @@ firebase.database().ref('Stories/' + storyId).once('value').then(function(snapsh
                 // Append conclusion since there's no nextChoices available
                 const conclusionContainer = document.createElement('p');
                 conclusionContainer.innerHTML = `<strong>${story.conclusion}</strong>`;
-                storyContainer.appendChild(conclusionContainer);  
+                storyContainer.appendChild(conclusionContainer);
                 checkAchievementTrigger("end_of_story"); // default sets the full story playthough to complete
             }
         };
@@ -136,6 +142,7 @@ firebase.database().ref('Stories/' + storyId).once('value').then(function(snapsh
 
 // Creates achievements in localStorage for the story
 const initializeAchievements = (achievements) => {
+    if(!achievements) return null
     achievements.forEach(achievement => {
         const key = `achievement_${storyId}_${achievement.id}`;
         
@@ -179,11 +186,6 @@ function onChoiceSelected(choice) {
 initializeAchievements(story.achievements) 
 
 
-let storyProgress = {
-    currentChoice: 0, // Count how many choices the player has made
-    totalChoices: 0,   // Total num of choices in the current path
-    hasEnded: false    // Flag to check if the story has ended
-};
 
 // Counts total choices based on the current story path
 function countTotalChoices(story) {
@@ -212,7 +214,7 @@ function countTotalChoices(story) {
 // Updates progress when the player makes a choice
 function updateProgression() {
     if (storyProgress.hasEnded) return;  // Stop updating if the story has ended
-
+    let progressBar = document.querySelector("#progression");
     // Increment current choice count 
     storyProgress.currentChoice++;
     
