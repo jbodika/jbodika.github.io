@@ -35,7 +35,6 @@ firebase.database().ref('Stories/' + storyId).once('value').then(function(snapsh
         `;
 
             let currentChoice = story.choices[0]; // Start with the first choice
-            console.log(currentChoice)
 
             function displayChoices() {
                 if (!currentChoice) return;
