@@ -110,15 +110,17 @@ if (storyId) {
                     // Find a specific choice by its ID in a nested structure of choices
                     const findNextChoice = (id, choices) => {
                         for (let choice of choices) {
+                              // if the current choice's ID matches the target id
                             if (choice.id === id) {
-                                return choice;
-                            }
+                                return choice; //return choice if there's a match
+                            }//check if it has nested options
                             if (choice.options) {
+                                // loop through each option in the choice
                                 for (let opt of choice.options) {
-                                    // If the option contains more nested choices, search recursively
+                                    // If the option contains more nested choices
                                     if (opt.nextChoices) {
-                                        const result = findNextChoice(id, opt.nextChoices);
-                                        if (result) return result;
+                                        const result = findNextChoice(id, opt.nextChoices);// search recursively until a match is found
+                                        if (result) return result; // once the recursive call finds the target result it will return it 
                                     }
                                 }
                             }
