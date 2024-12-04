@@ -1,0 +1,111 @@
+{
+    "description": "Different smoothies offered at the shop",
+    "drinks": [{
+            "id": 1,
+            "name": "Berry Bliss",
+            "ingredients": [
+                "Frozen Berries",
+                "Banana",
+                "Milk",
+                "Honey"
+            ],
+            "color": "#8E4585"
+        },
+        {
+            "id": 2,
+            "name": "Tropical Sunshine",
+            "ingredients": [
+                "Pineapple Chunks",
+                "Orange",
+                "Coconut Water",
+                "Yogurt"
+            ],
+            "color": "#F7C04A"
+        },
+        {
+            "id": 3,
+            "name": "Green Glow",
+            "ingredients": [
+                "Spinach Leaves",
+                "Green Apple",
+                "Avocado",
+                "Water"
+            ],
+            "color": "#A2D149"
+        },
+        {
+            "id": 4,
+            "name": "Chocolate Peanut Butter",
+            "ingredients": [
+                "Milk",
+                "Peanut Butter",
+                "Cocoa Powder",
+                "Banana"
+            ],
+            "color": "#8B5E3C"
+        },
+        {
+            "id": 5,
+            "name": "Mango Cream",
+            "ingredients": [
+                "Mango Chunks",
+                "Orange Juice",
+                "Yogurt",
+                "Chia Seeds"
+            ],
+            "color": "#FFC04C"
+        },
+        {
+            "id": 6,
+            "name": "Strawberry Bliss",
+            "ingredients": [
+                "Strawberry",
+                "Banana",
+                "Yogurt",
+                "Milk",
+                "Honey"
+            ],
+            "color": "#FF6384"
+        },
+
+        {
+            "id": 7,
+            "name": "Tropical Spinach Delight",
+            "ingredients": [
+                "Spinach Leaves",
+                "Green Apple",
+                "Avocado",
+                "Coconut Water",
+                "Honey"
+            ],
+            "color": "#A8D08D"
+        },
+        {
+            "id": 8,
+            "name": "Berry Banana Bliss",
+            "ingredients": [
+                "Frozen Berries",
+                "Banana",
+                "Milk",
+                "Honey",
+                "Yogurt"
+            ],
+            "color": "#8E4585"
+        },
+        {
+            "id": 9,
+            "name": "Mango Chia Sunrise",
+            "ingredients": [
+                "Mango Chunks",
+                "Orange Juice",
+                "Yogurt",
+                "Chia Seeds",
+                "Coconut Water"
+            ],
+            "color": "#FFC75F"
+        }
+
+
+
+    ]
+}
