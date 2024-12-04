@@ -216,7 +216,6 @@ function preload() {
     evilYogurt.image = loadImage('./assets/images/yogurt.png');
     evilYogurt.openImage = loadImage('./assets/images/openYogurt.png');
 
-    cuttingBoardImg = loadImage('./assets/images/cuttingBoard.png')
 
     // main screen images
     blenderImg = loadImage("./assets/images/blender.png");
@@ -463,11 +462,9 @@ function mousePressed() {
 function keyPressed() {
     if (key.toUpperCase() === 'L' && gameState == 'main') {
         gameState = 'playOriginalGame';
-        console.log('orignal');
     } else if (key.toUpperCase() === 'I' && gameState == 'main') {
         gameState = 'playConflictGame';
         currSpeechIndex = 0;
-        console.log('reverse');
 
     } else if (key.toUpperCase() === 'E' && gameState == 'main') {
         gameState = 'playStoryGame';

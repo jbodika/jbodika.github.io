@@ -34,7 +34,6 @@ let chosenIngredients = []
 let ingredientsCount = 0
 let smoothies;
 let movesLeft;
-let cuttingBoardImg = undefined
 let incorrectIngredientsCount = 0
 
 /**
@@ -98,7 +97,6 @@ function drawInGameCounter() {
  * Displays the pixelated foods on the counter top and centers them within their bounding box 
  */
 function drawCounterItems() {
-    image(cuttingBoardImg, 530, 520, 230, 180); // draw inactive cutting board for styling
 
     // Check if the ingredient action is not equal to blend, and use the original position for the blender.
     if (ingredientAction != 'blend') {
