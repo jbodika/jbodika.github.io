@@ -1,0 +1,128 @@
+html,
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.globe {
+    position: absolute;
+    left: -250px;
+    top: 10%;
+    width: 600px;
+}
+
+div img {
+    width: 100%;
+    -webkit-animation: spin 45s linear infinite;
+    -moz-animation: spin 45s linear infinite;
+    -o-animation: spin 45s linear infinite;
+    animation: spin 45s linear infinite;
+}
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.footerSection {
+    width: 100%;
+    height: 20%;
+    position: relative;
+    display: flex;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: lightgray;
+    justify-content: space-around;
+}
+
+.footerSection button {
+    width: 10%;
+    border: none;
+}
+
+.writeText {
+    margin-top: 5%;
+    background-color: #a2e363;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.2em;
+    
+    padding: 5px;
+    border: solid #a2e363;
+    font-size: 20px;
+    position: relative;
+}
+
+.miniGame {
+    /* margin-top: 4%;
+    text-align: center;
+    border: solid 1px;
+  
+    height: 600px;
+    width: 600px;
+    border-radius: 0.2em;
+    */
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: relative;
+}
+
+#question {
+    margin: 15px;
+    padding: 15px;
+    background-color: lightblue;
+
+    border: none;
+    border-radius: 2em;
+}
+
+#result{
+    color:#a2e363;
+    font-weight: bold;
+}
+video {
+    width: 640px;
+    height: 300px;
+    filter: hue-rotate(90deg);
+}
+
+
+/*Code taken from [] to rotatate an image using CSS properties*/
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
