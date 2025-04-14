@@ -17,8 +17,8 @@ window.onload = function () {
     // delays the video stream to build anticipation
     setTimeout(() => {
         Promise.all([
-            faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-            faceapi.nets.faceExpressionNet.loadFromUri('/models')
+            faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
+            faceapi.nets.faceExpressionNet.loadFromUri('./models')
         ]).then(setUpVideo)
     }, 24000)
 
