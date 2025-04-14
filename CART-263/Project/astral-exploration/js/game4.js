@@ -76,6 +76,9 @@ if (SpeechRecognition) {
                 spread: 180,
                 scalar
             });
+            setTimeout(() => {
+                window.location = './map.html';
+            }, 10000)
         }
 
     };

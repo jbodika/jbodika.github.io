@@ -287,7 +287,7 @@ window.onload = function () {
 
         // timeout to redirect the user out of the game
         setTimeout(() => {
-            window.location = '/map.html';
+            window.location = './map.html';
         }, 10000)
          }
 
