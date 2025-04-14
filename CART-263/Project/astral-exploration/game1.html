@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Astral Exploration</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="desktop-container">
+        <header>
+          <img src="assets/bell-icon.png" width="30" alt="Star">
+        </header>
+      
+        <div style="display: flex; gap: 40px; justify-content: center; align-items: center;">
+          <!-- Left: Letter Display -->
+          <div style="flex: 1; text-align: center;">
+            <h2 style="font-size: 48px;" id="targetLetter">あ</h2>
+            <p>Draw this character</p>
+          </div>
+      
+          <!-- Right: Canvas Area -->
+          <div style="flex: 2; position: relative; z-index: 10;"> <!-- Ensures canvas is on top -->
+            <canvas id="drawCanvas" width="400" height="400" 
+              style="border: 2px solid #ccc; border-radius: 8px; position: relative; z-index: 10; width: 100%; min-height: 400px;">
+            </canvas>
+            <p style="text-align: center; font-size: 14px; color: #666;">💡 Click and drag on your trackpad or mouse to draw.</p>
+          </div>
+        </div>
+
+
+        <!-- Add buttons here -->
+        <div style="text-align: center; margin-top: 20px;">
+          <button id="clearBtn" style="padding: 10px 20px; font-size: 16px;">Clear</button>
+          <button id="submitBtn" style="padding: 10px 20px; font-size: 16px; margin-left: 20px;">Submit</button>
+        </div>
+
+            <!-- Bottom Nav Bar -->
+        <footer>
+            <a href="index.html">
+                <button class="nav-btn">🏠</button>
+            </a>
+            <a href="map.html">
+                <button class="nav-btn">🌍</button>
+            </a>
+        </footer>
+    </div>
+
+  <script src="/js/game1.js"></script>
+</body>
+</html>

@@ -3,39 +3,41 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+    }
+    
+    body {
+    background-color: #f9f9f9;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-  }
-  
-  .phone {
-    width: 375px;
-    height: 812px;
-    background-color: #fff;
-    border-radius: 40px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    position: relative;
-    padding: 20px;
-  }
-  
-  header {
+    }
+    
+    .desktop-container {
+        max-width: 1200px;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #fff;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        margin: 40px auto;
+    }
+      
+    
+    header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .coin {
+    }
+    
+    .coin {
     color: #F8B400;
     font-size: 18px;
-  }
-  
-  .main-btn {
+    }
+    
+    .main-btn {
     background-color: #79CAF5;
     color: white;
     padding: 16px;
@@ -45,80 +47,80 @@
     margin: 12px auto;
     display: block;
     font-size: 18px;
-  }
-  
-  .main-btn:hover {
+    }
+    
+    .main-btn:hover {
     background-color: #64aed9;
-  }
-  
-  .character {
+    }
+    
+    .character {
     width: 150px;
     margin: 30px auto;
-  }
-  
-  .character img {
+    }
+    
+    .character img {
     width: 100%;
-  }
-  
-  .bottom-nav {
+    }
+    
+    .bottom-nav {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 20px;
-  }
-  
-  .bottom-nav img {
+    }
+    
+    .bottom-nav img {
     width: 30px;
-  }
-
-  a {
+    }
+    
+    a {
     text-decoration: none;
     color: white; /* optional: keeps the text color white */
-  }
-  
-  /* Map Level Styling */
-  .map-level {
+    }
+    
+    /* Map Level Styling */
+    .map-level {
     width: 100%;
     height: 100%;
     background: linear-gradient(#A0E3FF, #fff);
     position: relative;
-  }
-  
-  .level-icon {
+    }
+    
+    .level-icon {
     width: 50px;
     height: 50px;
     background-color: #FFD93D;
     border-radius: 50%;
     position: absolute;
-  }
-  
-  .level-icon.locked {
+    }
+    
+    .level-icon.locked {
     background-color: #ccc;
-  }
-  
-  .earth {
+    }
+    
+    .earth {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  /* Question Screen */
-  .flag-img {
+    }
+    
+    /* Question Screen */
+    .flag-img {
     width: 80%;
     margin: 30px auto;
     display: block;
     border-radius: 8px;
-  }
-  
-  .question {
+    }
+    
+    .question {
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .option-btn {
+    }
+    
+    .option-btn {
     width: 80%;
     padding: 15px;
     margin: 10px auto;
@@ -126,39 +128,39 @@
     border: 2px solid #DADADA;
     border-radius: 12px;
     cursor: pointer;
-  }
-  
-  .option-btn:hover {
+    }
+    
+    .option-btn:hover {
     background-color: #F2F2F2;
-  }
-  
-  .check-btn {
+    }
+    
+    .check-btn {
     background-color: #ddd;
     width: 80%;
     margin: 20px auto;
     padding: 16px;
     border-radius: 12px;
     text-align: center;
-  }
-  
-  .check-btn:hover {
+    }
+    
+    .check-btn:hover {
     background-color: #ccc;
-  }
-  
-  /* Result screen */
-  .star {
+    }
+    
+    /* Result screen */
+    .star {
     font-size: 80px;
     color: #FFD93D;
     text-align: center;
-  }
-  
-  .points {
+    }
+    
+    .points {
     font-size: 24px;
     text-align: center;
     margin: 20px 0;
-  }
-  
-  .continue-btn {
+    }
+    
+    .continue-btn {
     background-color: #79CAF5;
     color: white;
     padding: 16px;
@@ -168,35 +170,37 @@
     margin: 12px auto;
     display: block;
     font-size: 18px;
-  }
-  
-
-.phone-frame {
-  width: 375px;
-  height: 812px;
-  border: 1px solid #ccc;
-  border-radius: 40px;
-  margin: 20px auto;
-  overflow: hidden;
-  background-color: #fff;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-.map-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.map-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-  
-  .level-btn {
+    }
+    
+    
+    .phone-frame {
+    width: 375px;
+    height: 812px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    margin: 20px auto;
+    overflow: hidden;
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .map-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    }
+    
+    .map-image {
+        width: 30%;
+        height: auto;
+        display: block;
+        max-height: 600px; /* or whatever fits your desktop layout */
+        object-fit: cover;  /* optional: makes it crop nicely if too tall */
+    }
+    
+    
+    .level-btn {
     position: absolute;
     background-color: #ffe680;
     padding: 10px 15px;
@@ -205,31 +209,30 @@
     text-decoration: none;
     color: #333;
     font-weight: bold;
-  }
-  
-  .level-btn.locked {
+    }
+    
+    .level-btn.locked {
     background-color: #ccc;
     cursor: not-allowed;
-  }
-  
-  header, footer {
+    }
+    
+    header, footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-  }
-  
-  .character-icon {
+    }
+    
+    .character-icon {
     width: 60px;
-  }
-  
-  .coin {
+    }
+    
+    .coin {
     font-size: 18px;
-  }
-  
-  .nav-btn {
+    }
+    
+    .nav-btn {
     background: none;
     border: none;
     font-size: 24px;
-  }
-  
+    }

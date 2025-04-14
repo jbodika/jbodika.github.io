@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Astral Exploration - Knowledge Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 30px;
+      color: #333;
+    }
+
+    header {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    
+
+    .coin {
+      color: #F8B400;
+      font-size: 18px;
+    }
+
+    .main-btn {
+      background-color: #79CAF5;
+      color: white;
+      padding: 16px;
+      border-radius: 16px;
+      border: none;
+      width: 80%;
+      margin: 12px auto;
+      display: block;
+      font-size: 18px;
+    }
+
+    .main-btn:hover {
+      background-color: #64aed9;
+    }
+
+    .character {
+      width: 150px;
+      margin: 30px auto;
+    }
+
+    .character img {
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    #animal-img {
+      width: 300px;
+      height: auto;
+      margin: 20px 0;
+      border: 5px solid #79CAF5;
+      border-radius: 10px;
+    }
+
+    #knowledge-bar {
+      width: 100%;
+      max-width: 500px;
+      background: #ddd;
+      border: 2px solid #79CAF5;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+
+    #progress-bar {
+      height: 30px;
+      background: #79CAF5;
+      width: 0%;
+      border-radius: 20px;
+      transition: width 0.3s ease-in-out;
+    }
+
+    #animal-info {
+      margin: 15px 0;
+      font-size: 1.2em;
+    }
+
+    #alien-glyphs {
+      font-size: 2rem;
+      font-family: monospace;
+      color: #79CAF5;
+      margin: 20px 0;
+    }
+
+    #alien-subtitle {
+      font-size: 1rem;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .level-btn {
+    position: absolute;
+    background-color: #ffe680;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    }
+
+    .level-btn.locked {
+    background-color: #ccc;
+    cursor: not-allowed;
+    }
+
+    header, footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    }
+
+    .character-icon {
+    width: 60px;
+    }
+
+    .coin {
+    font-size: 18px;
+    }
+
+    .nav-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    }
+    
+    footer {
+    display: flex;
+    justify-content: center; /* center all buttons */
+    gap: 320px; /* space between buttons */
+    }
+  </style>
+</head>
+<body>
+
+    <header>
+        <img src="assets/bell-icon.png" width="30" alt="Star">
+       
+      </header>
+
+  <!-- Alien Glyphs -->
+  <div id="alien-glyphs">⌬⌬⌬</div>
+
+  <!-- Subtitle Text -->
+  <div id="alien-subtitle">Awaiting Earth data transmission...</div>
+
+  <!-- Animal Image -->
+  <img id="animal-img" src=""  />
+
+  <!-- Animal Info -->
+  <div id="animal-info"></div>
+
+  <!-- Knowledge Progress Bar -->
+  <div id="knowledge-bar">
+    <div id="progress-bar"></div>
+  </div>
+
+  <!-- Button to Fetch Animal -->
+  <button class="main-btn" id="learn-btn">Transmit Earth Knowledge 📡</button>
+
+    <!-- Bottom Nav Bar -->
+    <footer>
+        <a href="index.html">
+            <button class="nav-btn">🏠</button>
+        </a>
+        <a href="map.html">
+            <button class="nav-btn">🌍</button>
+        </a>
+    </footer>
+
+  <script src="js/game2.js" defer></script>
+</body>
+</html>
