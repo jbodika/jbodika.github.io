@@ -16,6 +16,7 @@
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 </head>
 
+
 <body>
     <main>
         <div class="desktop-container">
@@ -27,27 +28,27 @@
 
             <div class="miniGame">
 
-
-                <p id="question"></p>
+                <div>
+                     <p id="question"></p>
+                     <button id="skipBtn">Skip</button>
+                </div>
+               
 
                 <video id="video" autoplay></video>
                 <div class="btnArea"></div>
             </div>
             <div id="statsPanel">
-                <h3>Emotion Stats</h3>
-                <p>You must interact with 3 different emotions at least 2 times</p>
+                <h3 class="fw-bold">Make different faces infront of the 📷 to interact with humans.</h3>
+                <div class="fw-bold text-dark"> You must click on 3 different emotions at least once to complete the challenge</div>
                 <ul id="statsList"></ul>
 
-                <div id="topEmotion">Most frequent: <span id="highestEmotion">N/A</span></div>
+                <div id="topEmotion">The ultimate emotion: <span id="highestEmotion">N/A</span></div>
             </div>
 
 
 
             <footer>
-                <a href="index.html">
-                    <button class="nav-btn">🏠</button>
-                </a>
-                <a href="map.html">
+                <a href="./map.html">
                     <button class="nav-btn">🌍</button>
                 </a>
             </footer>
@@ -56,5 +57,4 @@
     <script type="module" src="./js/game3.js"></script>
 
 </body>
-
 </html>

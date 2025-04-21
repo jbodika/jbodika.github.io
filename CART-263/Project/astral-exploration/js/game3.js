@@ -3,25 +3,46 @@ window.onload = function () {
 
     const video = document.querySelector("#video");
     let textField = document.querySelector('.writeText');
-
+    let skipBtn = document.querySelector("#skipBtn");
     // runs the typewriting animation through the API 
-    new Typewriter(textField, {
+    let orginalText = new Typewriter(textField, {
         strings: ['⊑⟒⌰⌰⍜ ⍙⟒⌰☊⍜⋔⟒ ⎎⟒⌰⌰⍜⍙ ⏃⌰⟟⟒⋏!', 'My apologies, you cannot read ⏚⌰⍜⍀⏚⊬', 'Translating ⏚⌰⍜⍀⏚⊬ to ENGLISH','You need to find a way to understand earthlings'],
         loop: false,
         delay: 30,
         autoStart: true
     })
-
-
-
-    // delays the video stream to build anticipation
-    setTimeout(() => {
-        Promise.all([
-            faceapi.nets.tinyFaceDetector.loadFromUri('models/'),
-            faceapi.nets.faceExpressionNet.loadFromUri('models/')
-        ]).then(setUpVideo)
-    }, 24000)
-
+    let timeoutVal = 24000; // timeout to start the video stream after 24 seconds
+    let timeoutId; //identifies the timeout 
+    
+    // Start the timeout 
+    function startLoadingModels() {
+        timeoutId = setTimeout(() => {
+            Promise.all([
+                faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+                faceapi.nets.faceExpressionNet.loadFromUri('/models')
+            ]).then(setUpVideo);
+        }, timeoutVal);
+    }
+    
+    // Runs the original animation
+    startLoadingModels();
+    
+    // event listner function if the skip button is pressed 
+    skipBtn.addEventListener('click', () => {
+        orginalText.stop(); // stops the typewriter effect
+        textField.textContent = ''; // clear the text area
+        skipBtn.style.display = 'none';
+    
+        // Cancels the timeout
+        clearTimeout(timeoutId);
+    
+        // assign new timeoutValue due to the skip button being pressed
+        timeoutVal = 100;
+       
+        // call the loadingModels function again to start the video stream earlier
+        startLoadingModels();
+    });
+    
 
     /**Function to set upvideo stream */
     function setUpVideo() {
@@ -89,8 +110,12 @@ window.onload = function () {
             sad: "Water exits eye region. Is unit damaged?",
             surprised: "Sudden expansion of eyes detected. Threat or joy?",
             angry: "Color red. Increase in vocal decibels. Danger?",
+            neutral: "Subject is not demonstrating any emotion...",
+            disgusted: "Something seems to be bothering the subject",
+        
         };
-
+        textField.innerHTML = '';
+   
         new Typewriter(textField, {
             strings: (reactions[emotion]),
             loop: false,
@@ -240,7 +265,7 @@ window.onload = function () {
 
 // Checks the repeated count of the emotions
     function checkIfPlayerUnderstandsHumans() {
-        const repeatedEnough = Object.values(clickedEmotions).filter(count => count >= 2);
+        const repeatedEnough = Object.values(clickedEmotions).filter(count => count >= 1);
         // checks to see if the user met the minimum of repeated encounters
         if (repeatedEnough.length >= 3) {
             endGameSequence(); // they’ve earned it!
