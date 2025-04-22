@@ -1,156 +1,142 @@
-let knowledgeLevel = 0;
+const canvas = document.getElementById('drawCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+let drawnPoints = [];
 
-const progressBar = document.getElementById("progress-bar");
-const alienGlyphs = document.getElementById("alien-glyphs");
-const alienSubtitle = document.getElementById("alien-subtitle");
-const animalImg = document.getElementById("animal-img");
-const animalInfo = document.getElementById("animal-info");
-const learnBtn = document.getElementById("learn-btn");
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
 
-const alienGlyphChars = ["⨀", "⊗", "⧫", "◉", "⋇", "⋉", "⩨", "⧊", "✦", "⌬", "☍", "⟁"];
-const typeSpeed = 40;
+let currentLetterIndex = 0;
 
-const animalAPIs = [
-  {
-    name: "dog",
-    url: "https://random.dog/woof.json",
-    key: "url",
-    isValid: (url) => !url.endsWith(".mp4") && !url.endsWith(".webm"),
-  },
-  {
-    name: "cat",
-    url: "https://aws.random.cat/meow",
-    key: "file",
-    isValid: (url) => url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".jpeg"),
-  },
-  {
-    name: "fox",
-    url: "https://randomfox.ca/floof/",
-    key: "image",
-    isValid: (url) => true,
-  },
+// 🅰️ Define your alphabet drawings
+const letters = [
+  [ { x: 10, y: 10 }, { x: 20, y: 40 }, { x: 30, y: 10 } ], // A
+  [ { x: 10, y: 10 }, { x: 10, y: 40 }, { x: 30, y: 25 } ], // B
+  [ { x: 30, y: 10 }, { x: 10, y: 25 }, { x: 30, y: 40 } ], // C
+  [ { x: 10, y: 10 }, { x: 30, y: 25 }, { x: 10, y: 40 } ], // D
+  [ { x: 30, y: 10 }, { x: 10, y: 10 }, { x: 10, y: 40 }, { x: 30, y: 40 } ] // E
 ];
 
-const alienFacts = {
-  dog: [
-    'Subject "DOG": Loud bork beast. Worshipped by small humans.',
-    'Specimen "DOG": Four-legged loyalty agent. Tail wagger.',
-    'Analyzing DOG: Likely to drool. Potential pack leader.'
-  ],
-  cat: [
-    'Entity "CAT": Soft but sharp. Might be royalty.',
-    'Subject "CAT": Ignored commands. Suspected of world domination.',
-    'Analyzing CAT: Mood unstable. Purring detected.'
-  ],
-  fox: [
-    'Creature "FOX": Orange sneak. Makes strange noises.',
-    'Observed FOX: Quick mover. Potential trickster intelligence.',
-    'FOX specimen: Earth camouflage excellent. Tail is 80% body.'
-  ]
-};
+const letterLabels = ['あ', 'い', 'う', 'え', 'お'];
+document.getElementById('targetLetter').textContent = letterLabels[currentLetterIndex];
 
-function getRandomAnimalAPI() {
-  return animalAPIs[Math.floor(Math.random() * animalAPIs.length)];
+// 🖱 Mouse Events
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', endDraw);
+canvas.addEventListener('mouseleave', endDraw);
+
+// 📱 Touch Events
+canvas.addEventListener('touchstart', startTouch, { passive: false });
+canvas.addEventListener('touchmove', drawTouch, { passive: false });
+canvas.addEventListener('touchend', endDraw);
+
+function startDraw(e) {
+  drawing = true;
+  ctx.beginPath();
+  let x = e.offsetX;
+  let y = e.offsetY;
+  ctx.moveTo(x, y);
+  drawnPoints = [{ x, y }];
 }
 
-function getRandomAlienFact(animal) {
-  const facts = alienFacts[animal];
-  return facts[Math.floor(Math.random() * facts.length)];
+function draw(e) {
+  if (!drawing) return;
+  let x = e.offsetX;
+  let y = e.offsetY;
+  ctx.lineTo(x, y);
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 4;
+  ctx.lineCap = "round";
+  ctx.stroke();
+  drawnPoints.push({ x, y });
 }
 
-function playAlienGibberish() {
-  const gibberish = "Blorp zigg wooo kazaaa drrrp blrrr zorg-a-bork.";
-  const utterance = new SpeechSynthesisUtterance(gibberish);
-  utterance.pitch = 2;
-  utterance.rate = 1.5;
-  utterance.volume = 0.7;
-  speechSynthesis.speak(utterance);
+function endDraw() {
+  drawing = false;
 }
 
-function generateAlienReaction(animal) {
-  const reactions = [
-    `👽 Observing Earthling "${animal}"...`,
-    `🔬 Scanning "${animal}" from orbit...`,
-    `📡 Receiving signals from "${animal}"...`,
-    `🤖 Logging behavioral patterns of "${animal}"...`,
+function getTouchPos(canvas, touchEvent) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: touchEvent.touches[0].clientX - rect.left,
+    y: touchEvent.touches[0].clientY - rect.top
+  };
+}
+
+function startTouch(e) {
+  e.preventDefault();
+  const pos = getTouchPos(canvas, e);
+  drawing = true;
+  ctx.beginPath();
+  ctx.moveTo(pos.x, pos.y);
+  drawnPoints = [pos];
+}
+
+function drawTouch(e) {
+  if (!drawing) return;
+  e.preventDefault();
+  const pos = getTouchPos(canvas, e);
+  ctx.lineTo(pos.x, pos.y);
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 4;
+  ctx.lineCap = "round";
+  ctx.stroke();
+  drawnPoints.push(pos);
+}
+
+// 🔘 Buttons
+document.getElementById('clearBtn')?.addEventListener('click', () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawnPoints = [];
+});
+
+document.getElementById('submitBtn')?.addEventListener('click', () => {
+  checkDrawing();
+});
+
+document.getElementById('skipBtn')?.addEventListener('click', () => {
+  showPopup("⏭️ Skipped to the next letter.");
+  goToNextLetter();
+});
+
+// ✅ Super Forgiving Check
+function checkDrawing() {
+  const phrases = [
+    "✅ Nice drawing! Let's keep going!",
+    "🎉 Looks good to me!",
+    "👏 On to the next one!",
+    "✅ Good enough!",
+    "🔥 You're doing great!"
   ];
-  return reactions[Math.floor(Math.random() * reactions.length)];
+  const randomMessage = phrases[Math.floor(Math.random() * phrases.length)];
+  showPopup(randomMessage);
+  goToNextLetter();
 }
 
-function speakAlienReaction(text) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-GB';
-  utterance.pitch = 1.2;
-  utterance.rate = 0.9;
-  utterance.volume = 0.8;
-  speechSynthesis.speak(utterance);
-}
+function goToNextLetter() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawnPoints = [];
+  currentLetterIndex++;
 
-async function typeAlienGlyphs(text, subtitleText) {
-  alienGlyphs.textContent = "";
-  alienSubtitle.textContent = "";
-  playAlienGibberish();
-
-  for (let i = 0; i < text.length; i++) {
-    const randomGlyph = alienGlyphChars[Math.floor(Math.random() * alienGlyphChars.length)];
-    alienGlyphs.textContent += randomGlyph;
-    await new Promise(res => setTimeout(res, typeSpeed));
-  }
-
-  alienSubtitle.textContent = subtitleText;
-  speakAlienReaction(subtitleText);
-}
-
-async function fetchAnimalData() {
-  try {
-    const animalAPI = getRandomAnimalAPI();
-
-    let data, imageUrl;
-    let attempts = 0;
-
-    do {
-      const response = await fetch(animalAPI.url);
-      data = await response.json();
-      imageUrl = data[animalAPI.key];
-      attempts++;
-    } while (!animalAPI.isValid(imageUrl) && attempts < 3);
-
-    if (!animalAPI.isValid(imageUrl)) throw new Error("No valid image after 3 attempts");
-
-    animalImg.src = imageUrl;
-    animalImg.alt = animalAPI.name;
-    animalInfo.textContent = getRandomAlienFact(animalAPI.name);
-
-    const subtitle = generateAlienReaction(animalAPI.name);
-    await typeAlienGlyphs("alien_language_placeholder", subtitle);
-
-  } catch (err) {
-    console.error("API error:", err);
-    alienGlyphs.textContent = "☄⨀☠✦✶⨕⧫";
-    alienSubtitle.textContent = "🚨 Earth signal distorted. Transmission failed.";
-  }
-}
-
-function updateKnowledge() {
-  if (knowledgeLevel >= 100) return;
-
-  knowledgeLevel += 20;
-  progressBar.style.width = `${knowledgeLevel}%`;
-
-  if (knowledgeLevel >= 100) {
-    alienGlyphs.textContent = "⚛⨀ZORGON⩨✶✓";
-    alienSubtitle.textContent = "✅ FULL EARTH KNOWLEDGE ACQUIRED. RETURNING TO ZORGON.";
-    learnBtn.disabled = true;
-    learnBtn.textContent = "Mission Complete ✅";
-
-    // Redirect to map.html after 3 seconds
+  if (currentLetterIndex >= letters.length) {
+    showPopup("🎉 You finished the game! Redirecting...");
     setTimeout(() => {
       window.location.href = "map.html";
-    }, 3000);
+    }, 2000);
+    return;
   }
+
+  document.getElementById('targetLetter').textContent = letterLabels[currentLetterIndex];
 }
 
-learnBtn.addEventListener("click", async () => {
-  await fetchAnimalData();
-  updateKnowledge();
-});
+// 📣 Display popup
+function showPopup(message) {
+  const popup = document.getElementById('popupMessage');
+  popup.textContent = message;
+  popup.classList.remove('hidden');
+
+  setTimeout(() => {
+    popup.classList.add('hidden');
+  }, 2500);
+}

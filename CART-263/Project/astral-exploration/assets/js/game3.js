@@ -125,15 +125,10 @@ window.onload = function () {
             emotionItem = document.createElement('li');
             emotionItem.id = `stat-${emotion}`;
 
-            const img = document.createElement('img');
-            img.src = `../assets/${emotion}.png`;
-            img.alt = emotion;
-            img.className = 'emotion-icon';
-
             const span = document.createElement('span');
             span.textContent = `${emotion}: ${alienMemoryCount[emotion]}`;
 
-            emotionItem.appendChild(img);
+         
             emotionItem.appendChild(span);
             statsList.appendChild(emotionItem);
         } else {

@@ -1,0 +1,293 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+    
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    
+    .coin {
+    color: #F8B400;
+    font-size: 18px;
+    }
+    
+    .main-btn {
+    background-color: #79CAF5;
+    color: white;
+    padding: 16px;
+    border-radius: 16px;
+    border: none;
+    width: 80%;
+    margin: 12px auto;
+    display: block;
+    font-size: 18px;
+    }
+    
+    .main-btn:hover {
+    background-color: #64aed9;
+    }
+    
+    .character {
+    width: 150px;
+    margin: 30px auto;
+    }
+    
+    .character img {
+    width: 100%;
+    }
+    
+    .bottom-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    }
+    
+    .bottom-nav img {
+    width: 30px;
+    }
+  
+  a {
+    text-decoration: none;
+    color: white; /* optional: keeps the text color white */
+  }
+  
+  /* Map Level Styling */
+  .map-level {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#A0E3FF, #fff);
+    position: relative;
+  }
+  
+  .level-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #FFD93D;
+    border-radius: 50%;
+    position: absolute;
+  }
+  
+  .level-icon.locked {
+    background-color: #ccc;
+  }
+  
+  .earth {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+    
+  
+  /* Desktop Container */
+  .desktop-container {
+    max-width: 1200px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    margin: 40px auto;
+  }
+  
+  /* Canvas */
+  #drawCanvas {
+    width: 100%; 
+    height: auto; /* Make the canvas responsive */
+    max-width: 100%; /* Prevent canvas from overflowing */
+    min-height: 400px; /* Ensure a minimum size */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    touch-action: none; /* Helps with touchscreen */
+    user-select: none; /* Prevent text selection */
+  }
+  
+  /* Flex Layout for Drawing */
+  .game1-wrapper {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
+  
+  /* Letter Display Area */
+  .letter-display {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .letter {
+    font-size: 100px;
+    font-weight: bold;
+  }
+  
+  /* Button Styles */
+  #clearBtn, #submitBtn {
+    margin: 10px 10px 0 10px;
+    padding: 10px 20px;
+    background-color: #79CAF5;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  
+  /* Bottom Navigation */
+  .bottom-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+  }
+  
+  .bottom-nav img {
+    width: 30px;
+  }
+  
+  .map-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .map-image {
+    width: 30%;
+    max-height: 70vh; /* Adjust to your layout needs */
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+  
+  
+  .level-btn {
+  position: absolute;
+  background-color: #ffe680;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  }
+  
+  .level-btn.locked {
+  background-color: #ccc;
+  cursor: not-allowed;
+  }
+  
+  header, footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  }
+  
+  .character-icon {
+  width: 60px;
+  }
+  
+  .coin {
+  font-size: 18px;
+  }
+  
+  .nav-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  }
+  
+  
+  .popup-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .popup-modal.hidden {
+    display: none;
+  }
+  
+  .popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  
+  /* Popup Content */
+  .popup-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    z-index: 1000;
+    text-align: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .popup-message.hidden {
+    display: none;
+  }
+  
+  
+  .game-btn {
+    background-color: #79CAF5;
+    color: white;
+    padding: 10px 24px;
+    margin: 10px 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  
+  .game-btn:hover {
+    background-color: #64aed9;
+  }
+  
+  .game-btn.skip {
+    background-color: #F8B400;
+  }
+  
+  .game-btn.skip:hover {
+    background-color: #e6a700;
+  }
+  
+  
+  
