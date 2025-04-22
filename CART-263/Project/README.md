@@ -12,6 +12,8 @@ You must help a fellow alien navigate this bizarre world by collecting clues, de
 
 Will you crack the code of humanity, or will your alien friend remain forever lost on Earth?
 
+When you're looking at the map, you might notice advertisements in the background. Don’t be alarmed! This is completely normal here. On Earth, constant exposure to ads is part of the atmosphere. We call it "engagement." The alien, like all of us, must navigate a world where attention is currency and overconsumption is disguised as joy.
+
 ## Credits
 - W3Schools: A great resource for web development tutorials and reference materials. Visit [W3Schools
 p5.js](https://www.w3schools.com/)
