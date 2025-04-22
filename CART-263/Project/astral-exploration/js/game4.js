@@ -1,3 +1,16 @@
+/*
+* Astral Exploration - Deciphering
+* Jolene Bodika & John Compuesto
+*
+* Controls:
+* - You can choose if you want to crack a word or a sentence.
+- After making a selection you must read the jumble up sentence, and once you're ready you can press the button and speak to decipher it. 
+* Uses:
+* Speech Recognition API 
+* Confetti API
+*
+*/
+
 // Check if SpeechRecognition is supported in the browser
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -118,7 +131,7 @@ function incorrectDecipher(speech) {
 /**
  * Displays the game ending message to let the user know they successfully completed the game
  */
-function correctGuess(speech) {
+function correctDecipher(speech) {
     const message = document.createElement('div');
     message.className = 'alien-end-message';
     message.innerHTML = `
@@ -192,7 +205,7 @@ if (SpeechRecognition) {
             instructions.innerHTML = '';
 
             const scalar = 2;
-            correctGuess(speech);
+            correctDecipher(speech);
 
             //displays the confetti animation
             confetti({
