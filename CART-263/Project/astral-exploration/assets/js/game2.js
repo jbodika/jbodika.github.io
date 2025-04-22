@@ -1,3 +1,24 @@
+/**
+Astral Exploration - Human Language Learning
+
+Jolene Bodika & John Compuesto
+
+A game where the alien explorers learn and try to write human language.
+The player interacts with human letters and tries to draw them as an alien species.
+The alien’s attempt to replicate the human language will be checked.
+
+Controls:
+Use mouse or touch to draw on the canvas.
+Draw the letter that the alien is trying to replicate (based on the target character).
+Submit the drawing to see if it matches the human letter.
+Clear the canvas if needed and try again.
+Skip to the next letter if you want to move on.
+
+Uses:
+p5.js: Used for drawing and interactive canvas elements, allowing the player to draw letters and have a dynamic user interface.
+Canvas API: Essential for handling the drawing of letters, allowing the player to interact with the game through mouse or touch input.
+JavaScript: The core language used to manage the game’s logic, event listeners, and UI transitions, ensuring a smooth and interactive experience.
+ */
 const canvas = document.getElementById('drawCanvas');
 const ctx = canvas.getContext('2d');
 let drawing = false;

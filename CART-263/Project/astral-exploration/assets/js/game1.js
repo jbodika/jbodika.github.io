@@ -1,3 +1,20 @@
+/**
+Astral Exploration - Human Connection
+Jolene Bodika & John Compuesto
+
+A game where the players 'alien' explore earth species and transmit Earth knowledge.
+The player interacts with language and gathers facts about Earth animals.
+The language is also translated back into the alien language.
+
+Controls:
+Click the "Transmit Earth Knowledge" button to explore a new animal.
+Watch the alien glyphs appear as information is processed.
+
+Uses:
+p5.js (for animations and interactive elements)
+Fetch API (to get animal images and facts)
+SpeechSynthesis API (to add alien speech reactions)
+ */
 let knowledgeLevel = 0;
 
 const progressBar = document.getElementById("progress-bar");
