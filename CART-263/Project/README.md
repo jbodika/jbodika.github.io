@@ -34,10 +34,6 @@ p5.js](https://www.w3schools.com/)
 ### Alien Glyph Inspiration:
 Unicode Symbols & Sci-fi Visual Language: Alien glyphs are inspired by Unicode symbols and various sci-fi visual languages.
 
-### Emotions Images
-Characters from Inside Out © Disney/Pixar.
-Used here for educational/non-commercial purposes.
-
 ### Voice Synth:
 Web Speech API: For text-to-speech and speech recognition functionalities.
 
