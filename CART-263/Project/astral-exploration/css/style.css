@@ -233,3 +233,7 @@
     font-size: 24px;
   }
   
+  #decodedDiv{
+    background-color: #A0E3FF;
+    padding: 10px;
+  }
