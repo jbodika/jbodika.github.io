@@ -18,8 +18,8 @@ window.onload = function () {
     function startLoadingModels() {
         timeoutId = setTimeout(() => {
             Promise.all([
-                faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
-                faceapi.nets.faceExpressionNet.loadFromUri('./models')
+                faceapi.nets.tinyFaceDetector.loadFromUri('models/'),
+                faceapi.nets.faceExpressionNet.loadFromUri('models/')
             ]).then(setUpVideo);
         }, timeoutVal);
     }
