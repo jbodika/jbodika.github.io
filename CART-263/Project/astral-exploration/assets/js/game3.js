@@ -34,6 +34,8 @@ window.onload = function () {
     // Start the timeout 
     function startLoadingModels() {
         timeoutId = setTimeout(() => {
+        skipBtn.style.display = 'none';
+
             Promise.all([
                 faceapi.nets.tinyFaceDetector.loadFromUri('../assets/models/'),
                 faceapi.nets.faceExpressionNet.loadFromUri('../assets/models/')
