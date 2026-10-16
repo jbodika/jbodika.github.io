@@ -4,7 +4,7 @@ Jolene Bodika
 ## [View the project online](https://jbodika.github.io/CART-253/Assignments/VariationJam/)
 
 ## Description
-Welcome to Vee's Smoothie Shop!! This program is a smoothie making simulator that incorporates a bit of randomness and weirdnesss. Have a relaxing time making nivery satisfying smoothies. or test try out your responsiveness skills with a quick response mini game. ANd unwind with a peculiar short story. 
+Welcome to Vee's Smoothie Shop!! This program is a smoothie making simulator that incorporates a bit of randomness and weirdness. Have a relaxing time making very satisfying smoothies, or test your responsiveness skills with a quick mini game or simply unwind with a peculiar short story. 
 
 ### SmoooVees - Original Game
 
@@ -22,15 +22,15 @@ Relax after a long day by playing a smoothie making simulator.
 ### SmooVees - The Big Conflict
  * Like Vee said, she believes the food and appliances are arguing, which is weird, right?
  * Luckily for you, you can put an end to their bickering with the item they fear the most... the blender!
- * 
+   
  ##### Controls:
  * Click on the screen to read through the dialog.
  * Once it's over, hurry as quickly as possible to capture as many ingredients as you can with the blender.
  * Click on the screen to read through the dialog again.
- * 
+   
 ### SmooVees - Right Place Bad Time
  * In this 'mini-game' story, you’re very hungry after your shift and notice all the food on the counter, so you decide to eat it all.
- *
+ 
  ##### Controls:
  * Hover over all the ingredients to collect them.
  * Wait for the reading screen to pass.
